@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Registration System</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; }
+    nav { background: #2c3e50; padding: 12px 24px; color: white; }
+    nav a { color: white; margin-right: 16px; text-decoration: none; }
+    .container { max-width: 800px; margin: 24px auto; background: white; padding: 24px; border-radius: 6px; }
+    .msg { background: #fff3cd; padding: 10px; max-width: 800px; margin: 12px auto; border-radius: 4px; }
+    input { display: block; margin: 8px 0; padding: 8px; width: 100%; box-sizing: border-box; }
+    button { background: #2980b9; color: white; border: 0; padding: 8px 16px; cursor: pointer; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #ddd; padding: 8px; text-align: left; }
+  </style>
+</head>
+<body>
+<nav>
+  <strong>EventHub</strong> &nbsp;
+  {% if session.username %}
+    {% if session.role == 'admin' %}
+      <a href="{{ url_for('admin') }}">Dashboard</a>
+    {% else %}
+      <a href="{{ url_for('events') }}">Events</a>
+      <a href="{{ url_for('my_registrations') }}">My Registrations</a>
+    {% endif %}
+    <a href="{{ url_for('logout') }}" id="logout">Logout ({{ session.username }})</a>
+  {% else %}
+    <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('register') }}">Register</a>
+  {% endif %}
+</nav>
+{% with messages = get_flashed_messages() %}
+  {% for m in messages %}<div class="msg" id="flash">{{ m }}</div>{% endfor %}
+{% endwith %}
+<div class="container">
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

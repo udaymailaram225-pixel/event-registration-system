@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 id="participants-heading">Participants: {{ event.title }}</h2>
+<table>
+  <tr><th>#</th><th>Student</th></tr>
+  {% for p in people %}
+  <tr><td>{{ loop.index }}</td><td>{{ p.username }}</td></tr>
+  {% else %}
+  <tr><td colspan="2">No participants yet.</td></tr>
+  {% endfor %}
+</table>
+<a href="{{ url_for('admin') }}">Back to dashboard</a>
+{% endblock %}

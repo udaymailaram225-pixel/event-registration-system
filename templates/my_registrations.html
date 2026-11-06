@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Registrations</h2>
+<table>
+  <tr><th>ID</th><th>Event</th><th>Date</th><th>Venue</th></tr>
+  {% for r in regs %}
+  <tr><td>#{{ r.id }}</td><td>{{ r.title }}</td><td>{{ r.date }}</td><td>{{ r.venue }}</td></tr>
+  {% else %}
+  <tr><td colspan="4">No registrations yet.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

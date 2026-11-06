@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 id="confirm-heading">Registration Confirmed</h2>
+<p>Registration ID: <strong>#{{ reg.id }}</strong></p>
+<p>Name: {{ reg.username }}</p>
+<p>Event: {{ reg.title }}</p>
+<p>Date: {{ reg.date }}</p>
+<p>Venue: {{ reg.venue }}</p>
+<a href="{{ url_for('events') }}">Back to events</a>
+{% endblock %}
